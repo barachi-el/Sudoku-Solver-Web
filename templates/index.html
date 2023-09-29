@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudoku Solver</title>
+    <style>
+        .original {
+            color: blue;
+        }
+        table {
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            width: 30px;
+            height: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sudoku Solver</h1>
+    <form method="POST">
+        {% for i in range(9) %}
+        <label for="row_{{ i + 1 }}">Enter row {{ i + 1 }}:</label>
+        <input type="text" id="row_{{ i + 1 }}" name="row_{{ i + 1 }}" required>
+        <br>
+        {% endfor %}
+        <br>
+        <input type="submit" value="Solve Sudoku">
+    </form>
+
+    {% if board and solved %}
+    <h2>Solved Sudoku:</h2>
+    <table>
+        {% for i in range(9) %}
+        <tr>
+            {% for j in range(9) %}
+            <td class="{% if board[i][j] != 0 %}original{% endif %}">{{ board[i][j] }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+</body>
+</html>
